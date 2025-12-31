@@ -89,16 +89,14 @@ func (d *Dispatcher) dispatchLoop() {
 						atomic.AddInt32(&d.WorkerMetrics.JobCount, 1)
 						dispatched = true
 					default:
-						// worker channel full, try next
 					}
 				}
 
 				attempts++
-				time.Sleep(2 * time.Millisecond) // small backoff
+				time.Sleep(2 * time.Millisecond)
 			}
 
 			if !dispatched {
-				// all workers busy, enqueue with delay in separate goroutine
 				go func(j *Job) {
 					time.Sleep(20 * time.Millisecond)
 					select {
