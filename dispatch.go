@@ -61,6 +61,7 @@ func (d *Dispatcher) Run() {
 	d.startWorkers()
 	go d.dispatchLoop()
 	go d.resultLoop()
+	go d.autoScaleLoop()
 }
 
 func (d *Dispatcher) dispatchLoop() {
@@ -121,8 +122,6 @@ func (d *Dispatcher) resultLoop() {
 }
 
 func (d *Dispatcher) handleResult(res Result) {
-	d.mu.Lock()
-	defer d.mu.Unlock()
 	if res.Status == JobSuccess {
 		atomic.AddInt32(&d.WorkerMetrics.SuccessfulJobs, 1)
 		return
@@ -131,19 +130,101 @@ func (d *Dispatcher) handleResult(res Result) {
 	job := res.Job
 	job.Retries++
 
-	atomic.AddInt32(&d.WorkerMetrics.FailedJobs, 1)
-	atomic.AddInt32(&d.WorkerMetrics.JobRetryCount, 1)
 	if job.Retries <= d.MaxRetries {
-		fmt.Printf("🔁 Retrying job %s (%d/%d)\n",
-			job.ID, job.Retries, d.MaxRetries)
-		d.IncomingJob <- job
+		atomic.AddInt32(&d.WorkerMetrics.JobRetryCount, 1)
+
+		delay := time.Duration(1<<uint(job.Retries-1)) * time.Second
+		fmt.Printf("🔁 Retrying job %s (%d/%d) in %v\n", job.ID, job.Retries, d.MaxRetries, delay)
+
+		go func(j *Job, delay time.Duration) {
+			time.Sleep(delay)
+			select {
+			case d.IncomingJob <- j:
+			default:
+				fmt.Printf("⚠️ Retry queue full, moving job %s to DLQ\n", j.ID)
+				d.mu.Lock()
+				d.DLQ = append(d.DLQ, j)
+				d.mu.Unlock()
+			}
+		}(job, delay)
+
 		return
 	}
 
-	fmt.Printf("☠️ Job %s moved to DLQ loooooooool\n", job.ID)
+	atomic.AddInt32(&d.WorkerMetrics.FailedJobs, 1)
+	fmt.Printf("☠️ Job %v moved to DLQ after %d retries lmaooooooo\n", job.Name, job.Retries-1)
 	d.mu.Lock()
 	d.DLQ = append(d.DLQ, job)
 	d.mu.Unlock()
+}
+
+func (d *Dispatcher) scaleDown() {
+	if len(d.Workers) <= 1 {
+		return
+	}
+
+	for i := len(d.Workers) - 1; i >= 0; i-- {
+		w := d.Workers[i]
+		if atomic.LoadInt32(&w.Busy) == 0 {
+			w.Stop() // graceful
+			d.Workers = append(d.Workers[:i], d.Workers[i+1:]...)
+			fmt.Printf("[Autoscaler] scaled down → %d workers\n", len(d.Workers))
+			return
+		}
+	}
+}
+
+func (d *Dispatcher) scaleUp() {
+	if len(d.Workers) >= d.MaxWorkers {
+		return
+	}
+
+	id := len(d.Workers)
+	w := NewWorker(id, d.MaxJob, d.WorkerMetrics)
+
+	d.Workers = append(d.Workers, w)
+	go w.StartWorker()
+
+	fmt.Printf("[Autoscaler] scaled up → %d workers\n", len(d.Workers))
+}
+
+func (d *Dispatcher) autoScaleLoop() {
+	ticker := time.NewTicker(500 * time.Millisecond)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ticker.C:
+			busy := 0
+			for _, w := range d.Workers {
+				if atomic.LoadInt32(&w.Busy) == 1 {
+					busy++
+				}
+			}
+
+			total := len(d.Workers)
+			queueLen := len(d.IncomingJob)
+
+			utilization := float64(busy) / float64(total)
+
+			if utilization >= 0.8 && queueLen > total {
+				d.mu.Lock()
+				d.scaleUp()
+				d.mu.Unlock()
+			}
+
+			if utilization <= 0.3 && queueLen == 0 {
+				d.mu.Lock()
+				d.scaleDown()
+				d.mu.Unlock()
+			}
+
+		case <-d.stopChan:
+			return
+		case <-d.quitChan:
+			return
+		}
+	}
 }
 
 func (d *Dispatcher) Close() {
