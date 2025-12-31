@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -43,28 +42,27 @@ func (w *Worker) StartWorker() {
 		select {
 		case job, ok := <-w.JobChannel:
 			if !ok {
-				fmt.Printf("[Worker %d] Job channel closed\n", w.ID)
 				return
 			}
+			w.WorkerMetrics.IncJobCount()
 			atomic.StoreInt32(&w.Busy, 1)
-			fmt.Printf("[Worker %d] Processing job %s\n", w.ID, job.ID)
+			w.WorkerMetrics.IncActiveWorkers()
 
-			atomic.AddInt32(&w.WorkerMetrics.TotalJobs, 1)
+			w.WorkerMetrics.IncTotal()
 			status, err := processJob(*job, w.ID)
 
 			w.ResultChan <- Result{Job: job, Status: status, Err: err}
 			atomic.StoreInt32(&w.Busy, 0)
+			w.WorkerMetrics.DecActiveWorkers()
+			w.WorkerMetrics.DecJobCount()
 
 		case <-w.QuitChan:
-			fmt.Printf("[Worker %d] Force killing worker\n", w.ID)
 			return
 		case <-w.StopChan:
-			fmt.Printf("[Worker %d] Graceful stop initiated\n", w.ID)
 
 			for atomic.LoadInt32(&w.Busy) == 1 {
 				time.Sleep(10 * time.Millisecond)
 			}
-			fmt.Printf("[Worker %d] Graceful stop completed\n", w.ID)
 			return
 		}
 	}

@@ -43,14 +43,14 @@ func NewDispatcher(maxWorkers int) *Dispatcher {
 		mu:            new(sync.Mutex),
 		DLQ:           make([]*Job, 0),
 		WorkerMetrics: NewMetrics(),
-		quitChan:      make(chan bool),
-		stopChan:      make(chan bool),
+		quitChan:      make(chan bool, 1),
+		stopChan:      make(chan bool, 1),
 		wg:            new(sync.WaitGroup),
 	}
 }
 
 func (d *Dispatcher) startWorkers() {
-	for nWorker := range d.MaxWorkers {
+	for nWorker := 0; nWorker < d.MaxWorkers; nWorker++ {
 		w := NewWorker(nWorker, d.MaxJob, d.WorkerMetrics)
 		d.Workers = append(d.Workers, w)
 		go w.StartWorker()
@@ -62,6 +62,9 @@ func (d *Dispatcher) Run() {
 	go d.dispatchLoop()
 	go d.resultLoop()
 	go d.autoScaleLoop()
+
+	go d.StartMetricsLogger(100 * time.Millisecond)
+
 }
 
 func (d *Dispatcher) dispatchLoop() {
@@ -69,8 +72,14 @@ func (d *Dispatcher) dispatchLoop() {
 		select {
 		case job, ok := <-d.IncomingJob:
 			if !ok {
-				fmt.Println("[Dispatcher] Incoming job channel closed")
+				logger.Println("[Dispatcher] Incoming job channel closed")
 				return
+			}
+			if len(d.Workers) == 0 {
+				logger.Println("[Dispatcher] No workers available, retrying job later")
+				time.Sleep(50 * time.Millisecond)
+				d.IncomingJob <- job // requeue safely
+				continue
 			}
 
 			dispatched := false
@@ -83,7 +92,7 @@ func (d *Dispatcher) dispatchLoop() {
 				}
 				select {
 				case worker.JobChannel <- job:
-					fmt.Printf("[Dispatcher] Dispatched job %s to worker %d\n",
+					logger.Printf("[Dispatcher] Dispatched job %s to worker %d\n",
 						job.ID, worker.ID)
 					dispatched = true
 				default:
@@ -92,15 +101,15 @@ func (d *Dispatcher) dispatchLoop() {
 			}
 
 		case <-d.stopChan:
-			fmt.Println("[Dispatcher] Graceful shutdown initiated")
+			logger.Println("[Dispatcher] Graceful shutdown initiated")
 			close(d.IncomingJob)
 			for _, w := range d.Workers {
 				w.Stop()
 			}
-			fmt.Println("[Dispatcher] Graceful shutdown completed")
+			logger.Println("[Dispatcher] Graceful shutdown completed")
 			return
 		case <-d.quitChan:
-			fmt.Println("[Dispatcher] Force shutdown initiated")
+			logger.Println("[Dispatcher] Force shutdown initiated")
 			for _, w := range d.Workers {
 				w.Kill()
 			}
@@ -123,25 +132,26 @@ func (d *Dispatcher) resultLoop() {
 
 func (d *Dispatcher) handleResult(res Result) {
 	if res.Status == JobSuccess {
-		atomic.AddInt32(&d.WorkerMetrics.SuccessfulJobs, 1)
+		d.WorkerMetrics.IncSuccessful()
 		return
 	}
 
 	job := res.Job
 	job.Retries++
+	d.WorkerMetrics.IncJobRetry()
 
 	if job.Retries <= d.MaxRetries {
-		atomic.AddInt32(&d.WorkerMetrics.JobRetryCount, 1)
+		d.WorkerMetrics.IncJobRetry()
 
 		delay := time.Duration(1<<uint(job.Retries-1)) * time.Second
-		fmt.Printf("🔁 Retrying job %s (%d/%d) in %v\n", job.ID, job.Retries, d.MaxRetries, delay)
+		logger.Printf("🔁 Retrying job %s (%d/%d) in %v\n", job.ID, job.Retries, d.MaxRetries, delay)
 
 		go func(j *Job, delay time.Duration) {
 			time.Sleep(delay)
 			select {
 			case d.IncomingJob <- j:
 			default:
-				fmt.Printf("⚠️ Retry queue full, moving job %s to DLQ\n", j.ID)
+				logger.Printf("⚠️ Retry queue full, moving job %s to DLQ\n", j.ID)
 				d.mu.Lock()
 				d.DLQ = append(d.DLQ, j)
 				d.mu.Unlock()
@@ -151,8 +161,8 @@ func (d *Dispatcher) handleResult(res Result) {
 		return
 	}
 
-	atomic.AddInt32(&d.WorkerMetrics.FailedJobs, 1)
-	fmt.Printf("☠️ Job %v moved to DLQ after %d retries lmaooooooo\n", job.Name, job.Retries-1)
+	d.WorkerMetrics.IncFailed()
+	logger.Printf("☠️ Job %v moved to DLQ after %d retries lmaooooooo\n", job.Name, job.Retries-1)
 	d.mu.Lock()
 	d.DLQ = append(d.DLQ, job)
 	d.mu.Unlock()
@@ -166,9 +176,9 @@ func (d *Dispatcher) scaleDown() {
 	for i := len(d.Workers) - 1; i >= 0; i-- {
 		w := d.Workers[i]
 		if atomic.LoadInt32(&w.Busy) == 0 {
-			w.Stop() // graceful
+			w.Stop()
 			d.Workers = append(d.Workers[:i], d.Workers[i+1:]...)
-			fmt.Printf("[Autoscaler] scaled down → %d workers\n", len(d.Workers))
+			logger.Printf("[Autoscaler] scaled down → %d workers\n", len(d.Workers))
 			return
 		}
 	}
@@ -185,7 +195,7 @@ func (d *Dispatcher) scaleUp() {
 	d.Workers = append(d.Workers, w)
 	go w.StartWorker()
 
-	fmt.Printf("[Autoscaler] scaled up → %d workers\n", len(d.Workers))
+	logger.Printf("[Autoscaler] scaled up → %d workers\n", len(d.Workers))
 }
 
 func (d *Dispatcher) autoScaleLoop() {
@@ -225,6 +235,27 @@ func (d *Dispatcher) autoScaleLoop() {
 			return
 		}
 	}
+}
+
+func (d *Dispatcher) StartMetricsLogger(interval time.Duration) {
+	go func() {
+		ticker := time.NewTicker(interval)
+		fmt.Println("ticking------------->")
+		defer ticker.Stop()
+		for {
+			select {
+			case <-ticker.C:
+				fmt.Println("--------------------->")
+				d.WorkerMetrics.LogMetrics()
+			case <-d.stopChan:
+				logger.Println("[MetricsLogger] Graceful shutdown")
+				return
+			case <-d.quitChan:
+				logger.Println("[MetricsLogger] Force shutdown")
+				return
+			}
+		}
+	}()
 }
 
 func (d *Dispatcher) Close() {

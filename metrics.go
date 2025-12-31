@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"sync/atomic"
 	"time"
 
 	"github.com/google/uuid"
@@ -45,14 +46,7 @@ type Metrics struct {
 }
 
 func NewMetrics() *Metrics {
-	return &Metrics{
-		SuccessfulJobs: 0,
-		FailedJobs:     0,
-		TotalJobs:      0,
-		JobCount:       0,
-		ActiveWorkers:  0,
-		JobRetryCount:  0,
-	}
+	return &Metrics{}
 }
 
 var ErrorFailedToProcessJob = errors.New("failed to process job lmaoooooooooooooo")
@@ -63,15 +57,80 @@ func processJob(notif Job, workerId int) (JobStatus, error) {
 
 	messageId := strings.Split(notif.Name, " ")
 	if len(messageId) < 2 {
-		fmt.Printf("❌ Failed to process job!\n📝 Name: %v\n🆔 ID: %v\n📌 Status: %v\n----------------\n", notif.Name, notif.ID, "Failed")
+		logger.Printf("❌ Failed to process job!\n📝 Name: %v\n🆔 ID: %v\n📌 Status: %v\n----------------\n", notif.Name, notif.ID, "Failed")
 		return JobFailure, ErrorFailedToProcessJob
 	}
 
 	_, err := strconv.Atoi(messageId[1])
 	if err != nil {
-		fmt.Printf("❌ Failed to process job!\n📝 Name: %v\n🆔 ID: %v\n📌 Status: %v\n----------------\n", notif.Name, notif.ID, "Failed")
+		logger.Printf("❌ Failed to process job!\n📝 Name: %v\n🆔 ID: %v\n📌 Status: %v\n----------------\n", notif.Name, notif.ID, "Failed")
 		return JobFailure, ErrorFailedToProcessJob
 	}
-	fmt.Printf("✅ Job processed successfully!\n📝 Name: %v\n🆔 ID: %v\n📌 Status: %v\n📦 Payload: %+v\n----------------\n", notif.Name, notif.ID, "Success", notif.Payload)
+	logger.Printf("✅ Job processed successfully! Name: %v, ID: %v, Payload: %+v\n",
+		notif.Name, notif.ID, notif.Payload)
 	return JobSuccess, nil
+}
+
+func (m *Metrics) IncSuccessful() {
+	atomic.AddInt32(&m.SuccessfulJobs, 1)
+}
+
+func (m *Metrics) IncFailed() {
+	atomic.AddInt32(&m.FailedJobs, 1)
+}
+
+func (m *Metrics) IncTotal() {
+	atomic.AddInt32(&m.TotalJobs, 1)
+}
+
+func (m *Metrics) IncJobRetry() {
+	atomic.AddInt32(&m.JobRetryCount, 1)
+}
+
+func (m *Metrics) IncActiveWorkers() {
+	atomic.AddInt32(&m.ActiveWorkers, 1)
+}
+
+func (m *Metrics) DecActiveWorkers() {
+	atomic.AddInt32(&m.ActiveWorkers, -1)
+}
+
+func (m *Metrics) IncJobCount() {
+	atomic.AddInt32(&m.JobCount, 1)
+}
+func (m *Metrics) DecJobCount() {
+	atomic.AddInt32(&m.JobCount, -1)
+}
+
+func (m *Metrics) GetSnapshot() Metrics {
+	return Metrics{
+		SuccessfulJobs: atomic.LoadInt32(&m.SuccessfulJobs),
+		FailedJobs:     atomic.LoadInt32(&m.FailedJobs),
+		TotalJobs:      atomic.LoadInt32(&m.TotalJobs),
+		JobCount:       atomic.LoadInt32(&m.JobCount),
+		ActiveWorkers:  atomic.LoadInt32(&m.ActiveWorkers),
+		JobRetryCount:  atomic.LoadInt32(&m.JobRetryCount),
+	}
+}
+
+func (m *Metrics) LogMetrics() {
+	snapshot := m.GetSnapshot()
+	fmt.Println(snapshot)
+	fmt.Printf("📊 Metrics Snapshot → SuccessfulJobs: %d, FailedJobs: %d, TotalJobs: %d, ActiveWorkers: %d, JobRetryCount: %d, JobCount: %d\n",
+		snapshot.SuccessfulJobs,
+		snapshot.FailedJobs,
+		snapshot.TotalJobs,
+		snapshot.ActiveWorkers,
+		snapshot.JobRetryCount,
+		snapshot.JobCount,
+	)
+	logger.Printf("📊 Metrics Snapshot → SuccessfulJobs: %d, FailedJobs: %d, TotalJobs: %d, ActiveWorkers: %d, JobRetryCount: %d, JobCount: %d\n",
+		snapshot.SuccessfulJobs,
+		snapshot.FailedJobs,
+		snapshot.TotalJobs,
+		snapshot.ActiveWorkers,
+		snapshot.JobRetryCount,
+		snapshot.JobCount,
+	)
+
 }

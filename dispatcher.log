@@ -1,0 +1,409 @@
+2025/12/31 16:04:24.199162 [Dispatcher] Dispatched job e18e699b-9464-49fa-a37f-7b9ed143e50e to worker 0
+2025/12/31 16:04:24.199237 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: e18e699b-9464-49fa-a37f-7b9ed143e50e
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.199265 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.204539 [Dispatcher] Dispatched job e3ad5ffc-14c4-4cdc-b7e6-ce8879c45ce6 to worker 1
+2025/12/31 16:04:24.205666 ✅ Job processed successfully! Name: send 1, ID: e3ad5ffc-14c4-4cdc-b7e6-ce8879c45ce6, Payload: payload-1
+2025/12/31 16:04:24.210058 [Dispatcher] Dispatched job e7ed6c21-9458-45c6-b086-8f3744a5bd9b to worker 2
+2025/12/31 16:04:24.212378 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: e7ed6c21-9458-45c6-b086-8f3744a5bd9b
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.212465 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.215652 [Dispatcher] Dispatched job 573f27b4-2ebb-4545-855f-33ee5f6ad4f4 to worker 3
+2025/12/31 16:04:24.219010 ✅ Job processed successfully! Name: send 3, ID: 573f27b4-2ebb-4545-855f-33ee5f6ad4f4, Payload: payload-3
+2025/12/31 16:04:24.221406 [Dispatcher] Dispatched job f7f5f76c-e3bb-406e-9793-950371537a2e to worker 4
+2025/12/31 16:04:24.225849 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: f7f5f76c-e3bb-406e-9793-950371537a2e
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.226072 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.227050 [Dispatcher] Dispatched job 972de460-c662-4d84-8100-72803cf4eca3 to worker 0
+2025/12/31 16:04:24.227121 ✅ Job processed successfully! Name: send 5, ID: 972de460-c662-4d84-8100-72803cf4eca3, Payload: payload-5
+2025/12/31 16:04:24.232490 [Dispatcher] Dispatched job b2ab34c4-95e6-4fdd-a2ce-db291fc54bfc to worker 1
+2025/12/31 16:04:24.233755 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: b2ab34c4-95e6-4fdd-a2ce-db291fc54bfc
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.233827 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.238142 [Dispatcher] Dispatched job 3d272d24-34e3-48cf-85e4-c4571ba75a01 to worker 2
+2025/12/31 16:04:24.240604 ✅ Job processed successfully! Name: send 7, ID: 3d272d24-34e3-48cf-85e4-c4571ba75a01, Payload: payload-7
+2025/12/31 16:04:24.243925 [Dispatcher] Dispatched job b59a020f-e5c0-4fa4-a7c6-10d53b03d201 to worker 3
+2025/12/31 16:04:24.247368 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: b59a020f-e5c0-4fa4-a7c6-10d53b03d201
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.247472 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.249715 [Dispatcher] Dispatched job a4e2f505-cbaa-443c-8dc5-220b74692085 to worker 4
+2025/12/31 16:04:24.254149 ✅ Job processed successfully! Name: send 9, ID: a4e2f505-cbaa-443c-8dc5-220b74692085, Payload: payload-9
+2025/12/31 16:04:24.255369 [Dispatcher] Dispatched job 3f868097-b85e-4cd0-ab22-3512c33fa1da to worker 0
+2025/12/31 16:04:24.255432 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 3f868097-b85e-4cd0-ab22-3512c33fa1da
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.255480 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.260794 [Dispatcher] Dispatched job 4575c44d-9fa1-42fe-9eb7-61d5b8e8297c to worker 1
+2025/12/31 16:04:24.262092 ✅ Job processed successfully! Name: send 11, ID: 4575c44d-9fa1-42fe-9eb7-61d5b8e8297c, Payload: payload-11
+2025/12/31 16:04:24.266354 [Dispatcher] Dispatched job 8e3e913a-2751-44da-a4c3-e65998f5fbd0 to worker 2
+2025/12/31 16:04:24.268692 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 8e3e913a-2751-44da-a4c3-e65998f5fbd0
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.268783 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.272084 [Dispatcher] Dispatched job 18e322b2-945a-459b-bee5-ab079eefa3ec to worker 3
+2025/12/31 16:04:24.275409 ✅ Job processed successfully! Name: send 13, ID: 18e322b2-945a-459b-bee5-ab079eefa3ec, Payload: payload-13
+2025/12/31 16:04:24.277864 [Dispatcher] Dispatched job b3ab05db-c001-488e-abd4-dae754f0134f to worker 4
+2025/12/31 16:04:24.282576 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: b3ab05db-c001-488e-abd4-dae754f0134f
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.282651 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.283841 [Dispatcher] Dispatched job 4ceed304-0b70-42a7-97fa-be833b947771 to worker 0
+2025/12/31 16:04:24.283898 ✅ Job processed successfully! Name: send 15, ID: 4ceed304-0b70-42a7-97fa-be833b947771, Payload: payload-15
+2025/12/31 16:04:24.289286 [Dispatcher] Dispatched job d5579975-89aa-4c92-af90-3c8b0243dfba to worker 1
+2025/12/31 16:04:24.290558 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: d5579975-89aa-4c92-af90-3c8b0243dfba
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.290684 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.294934 [Dispatcher] Dispatched job 0233e4c8-affc-4d75-9c3b-7bdc63c94e1c to worker 2
+2025/12/31 16:04:24.297369 ✅ Job processed successfully! Name: send 17, ID: 0233e4c8-affc-4d75-9c3b-7bdc63c94e1c, Payload: payload-17
+2025/12/31 16:04:24.300012 📊 Metrics Snapshot → SuccessfulJobs: 9, FailedJobs: 9, TotalJobs: 18, ActiveWorkers: 0, JobRetryCount: 9, JobCount: 0
+2025/12/31 16:04:24.300109 [Dispatcher] Dispatched job e196a557-dee7-48ba-b936-119bf8bbf930 to worker 3
+2025/12/31 16:04:24.303204 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: e196a557-dee7-48ba-b936-119bf8bbf930
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.303312 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.305531 [Dispatcher] Dispatched job 04e5ead4-1433-425b-baea-76bd439b116b to worker 4
+2025/12/31 16:04:24.309978 ✅ Job processed successfully! Name: send 19, ID: 04e5ead4-1433-425b-baea-76bd439b116b, Payload: payload-19
+2025/12/31 16:04:24.311228 [Dispatcher] Dispatched job 998bc616-aed9-4081-bda6-71c44d0b6c6f to worker 0
+2025/12/31 16:04:24.311293 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 998bc616-aed9-4081-bda6-71c44d0b6c6f
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.311325 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.316642 [Dispatcher] Dispatched job 4e4897c8-2e9a-4f66-93e2-c2daf48af453 to worker 1
+2025/12/31 16:04:24.317976 ✅ Job processed successfully! Name: send 21, ID: 4e4897c8-2e9a-4f66-93e2-c2daf48af453, Payload: payload-21
+2025/12/31 16:04:24.322473 [Dispatcher] Dispatched job 18f0c0c9-02cb-4447-ab00-cdce80fb1c5f to worker 2
+2025/12/31 16:04:24.325362 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 18f0c0c9-02cb-4447-ab00-cdce80fb1c5f
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.325435 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.328727 [Dispatcher] Dispatched job d35d0d4b-b0e5-4483-9acf-df2d6fe4d018 to worker 3
+2025/12/31 16:04:24.332293 ✅ Job processed successfully! Name: send 23, ID: d35d0d4b-b0e5-4483-9acf-df2d6fe4d018, Payload: payload-23
+2025/12/31 16:04:24.334623 [Dispatcher] Dispatched job 37467ef5-7ff7-4ba2-8b28-67531d108a63 to worker 4
+2025/12/31 16:04:24.339244 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 37467ef5-7ff7-4ba2-8b28-67531d108a63
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.339791 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.340213 [Dispatcher] Dispatched job 8f02e75e-7b4a-43e7-b92a-cbaad2481ff0 to worker 0
+2025/12/31 16:04:24.340281 ✅ Job processed successfully! Name: send 25, ID: 8f02e75e-7b4a-43e7-b92a-cbaad2481ff0, Payload: payload-25
+2025/12/31 16:04:24.346158 [Dispatcher] Dispatched job 232594c0-7c5f-42e0-8176-c2802cd4cbb6 to worker 1
+2025/12/31 16:04:24.347567 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 232594c0-7c5f-42e0-8176-c2802cd4cbb6
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.347646 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.352080 [Dispatcher] Dispatched job 9d33b9ad-da73-44ca-9c2b-dbb7b2b710a2 to worker 2
+2025/12/31 16:04:24.354505 ✅ Job processed successfully! Name: send 27, ID: 9d33b9ad-da73-44ca-9c2b-dbb7b2b710a2, Payload: payload-27
+2025/12/31 16:04:24.357815 [Dispatcher] Dispatched job 57c0e461-60d6-4b52-81d6-24a0b2a600d4 to worker 3
+2025/12/31 16:04:24.361201 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 57c0e461-60d6-4b52-81d6-24a0b2a600d4
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.361344 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.364551 [Dispatcher] Dispatched job 747fff09-1281-4f4e-8a0d-53bcd8a379ee to worker 4
+2025/12/31 16:04:24.368914 ✅ Job processed successfully! Name: send 29, ID: 747fff09-1281-4f4e-8a0d-53bcd8a379ee, Payload: payload-29
+2025/12/31 16:04:24.370149 [Dispatcher] Dispatched job 1a0430bb-e6b1-46cb-97cf-cc69096e63aa to worker 0
+2025/12/31 16:04:24.370193 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 1a0430bb-e6b1-46cb-97cf-cc69096e63aa
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.370215 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.375425 [Dispatcher] Dispatched job cded9663-8dc5-4163-822a-e33f0bcbd1e1 to worker 1
+2025/12/31 16:04:24.376657 ✅ Job processed successfully! Name: send 31, ID: cded9663-8dc5-4163-822a-e33f0bcbd1e1, Payload: payload-31
+2025/12/31 16:04:24.380981 [Dispatcher] Dispatched job bf404fcd-d80d-4ea2-9d61-8cdc53f7bac0 to worker 2
+2025/12/31 16:04:24.383297 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: bf404fcd-d80d-4ea2-9d61-8cdc53f7bac0
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.383339 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.386659 [Dispatcher] Dispatched job ec64431e-602d-49fe-8ad2-f42fa8d9da8e to worker 3
+2025/12/31 16:04:24.390006 ✅ Job processed successfully! Name: send 33, ID: ec64431e-602d-49fe-8ad2-f42fa8d9da8e, Payload: payload-33
+2025/12/31 16:04:24.392376 [Dispatcher] Dispatched job f3a111ab-9c6c-42f7-b181-0b52858649cd to worker 4
+2025/12/31 16:04:24.396844 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: f3a111ab-9c6c-42f7-b181-0b52858649cd
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.396895 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.398098 [Dispatcher] Dispatched job 559decc0-ec68-424c-ab00-cd2c3eafdf0f to worker 0
+2025/12/31 16:04:24.398147 ✅ Job processed successfully! Name: send 35, ID: 559decc0-ec68-424c-ab00-cd2c3eafdf0f, Payload: payload-35
+2025/12/31 16:04:24.399384 📊 Metrics Snapshot → SuccessfulJobs: 18, FailedJobs: 18, TotalJobs: 36, ActiveWorkers: 0, JobRetryCount: 18, JobCount: 0
+2025/12/31 16:04:24.403602 [Dispatcher] Dispatched job 5333e318-ea68-49ac-9a3c-23056574cbc6 to worker 1
+2025/12/31 16:04:24.404717 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 5333e318-ea68-49ac-9a3c-23056574cbc6
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.404814 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.409017 [Dispatcher] Dispatched job 074133c3-88c4-4bad-b2f6-ade68efb2dca to worker 2
+2025/12/31 16:04:24.411324 ✅ Job processed successfully! Name: send 37, ID: 074133c3-88c4-4bad-b2f6-ade68efb2dca, Payload: payload-37
+2025/12/31 16:04:24.414780 [Dispatcher] Dispatched job e83ad88f-0dcd-413e-b07f-edade6c017d0 to worker 3
+2025/12/31 16:04:24.418161 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: e83ad88f-0dcd-413e-b07f-edade6c017d0
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.418219 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.420460 [Dispatcher] Dispatched job 19fafa02-ce3c-4078-a431-81b15c974926 to worker 4
+2025/12/31 16:04:24.424773 ✅ Job processed successfully! Name: send 39, ID: 19fafa02-ce3c-4078-a431-81b15c974926, Payload: payload-39
+2025/12/31 16:04:24.426101 [Dispatcher] Dispatched job 920a3b39-1b7f-4a13-83ce-24c14e2c6e21 to worker 0
+2025/12/31 16:04:24.426415 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 920a3b39-1b7f-4a13-83ce-24c14e2c6e21
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.426483 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.431733 [Dispatcher] Dispatched job b5a5252a-1160-4f3f-b4f6-989647458000 to worker 1
+2025/12/31 16:04:24.432951 ✅ Job processed successfully! Name: send 41, ID: b5a5252a-1160-4f3f-b4f6-989647458000, Payload: payload-41
+2025/12/31 16:04:24.437336 [Dispatcher] Dispatched job 7eff2d42-1872-4c21-bf9f-1e6af615be57 to worker 2
+2025/12/31 16:04:24.439646 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 7eff2d42-1872-4c21-bf9f-1e6af615be57
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.439850 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.442807 [Dispatcher] Dispatched job bc18a459-f513-4748-9065-a82657d9fd13 to worker 3
+2025/12/31 16:04:24.446152 ✅ Job processed successfully! Name: send 43, ID: bc18a459-f513-4748-9065-a82657d9fd13, Payload: payload-43
+2025/12/31 16:04:24.448741 [Dispatcher] Dispatched job 036bb6dc-e4c1-40e9-a4ca-f5733030170e to worker 4
+2025/12/31 16:04:24.453131 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 036bb6dc-e4c1-40e9-a4ca-f5733030170e
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.453243 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.454322 [Dispatcher] Dispatched job 4c552491-b922-467b-a7ca-dc2c67e81096 to worker 0
+2025/12/31 16:04:24.454408 ✅ Job processed successfully! Name: send 45, ID: 4c552491-b922-467b-a7ca-dc2c67e81096, Payload: payload-45
+2025/12/31 16:04:24.459742 [Dispatcher] Dispatched job 1d20a732-c476-40fe-838d-f8a36ed901c6 to worker 1
+2025/12/31 16:04:24.461028 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 1d20a732-c476-40fe-838d-f8a36ed901c6
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.461090 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.465474 [Dispatcher] Dispatched job 49ae048b-d675-407a-8d6f-529a6fbb429a to worker 2
+2025/12/31 16:04:24.467885 ✅ Job processed successfully! Name: send 47, ID: 49ae048b-d675-407a-8d6f-529a6fbb429a, Payload: payload-47
+2025/12/31 16:04:24.471318 [Dispatcher] Dispatched job 27721ece-d3af-4f2a-9833-e476bfd1360a to worker 3
+2025/12/31 16:04:24.474759 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 27721ece-d3af-4f2a-9833-e476bfd1360a
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.474997 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.477066 [Dispatcher] Dispatched job a52cecab-c6e9-4e12-b653-f2b343b7d28a to worker 4
+2025/12/31 16:04:24.481362 ✅ Job processed successfully! Name: send 49, ID: a52cecab-c6e9-4e12-b653-f2b343b7d28a, Payload: payload-49
+2025/12/31 16:04:24.482561 [Dispatcher] Dispatched job 67a3b28b-5eb7-4dd4-a32b-a91748eaadf4 to worker 0
+2025/12/31 16:04:24.482626 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 67a3b28b-5eb7-4dd4-a32b-a91748eaadf4
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.482656 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.487874 [Dispatcher] Dispatched job 518674ce-fc62-410d-8f84-a1ba1e2359aa to worker 1
+2025/12/31 16:04:24.489162 ✅ Job processed successfully! Name: send 51, ID: 518674ce-fc62-410d-8f84-a1ba1e2359aa, Payload: payload-51
+2025/12/31 16:04:24.493579 [Dispatcher] Dispatched job 587aae0d-697e-4e2a-9738-535f57fe0150 to worker 2
+2025/12/31 16:04:24.496055 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 587aae0d-697e-4e2a-9738-535f57fe0150
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.496124 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.499525 📊 Metrics Snapshot → SuccessfulJobs: 26, FailedJobs: 27, TotalJobs: 53, ActiveWorkers: 0, JobRetryCount: 27, JobCount: 0
+2025/12/31 16:04:24.499609 [Dispatcher] Dispatched job 828d5513-031f-43bd-a1c7-16ba5a3d5b89 to worker 3
+2025/12/31 16:04:24.503059 ✅ Job processed successfully! Name: send 53, ID: 828d5513-031f-43bd-a1c7-16ba5a3d5b89, Payload: payload-53
+2025/12/31 16:04:24.505573 [Dispatcher] Dispatched job 08146b33-90bd-4ff4-96d0-340690794460 to worker 4
+2025/12/31 16:04:24.510270 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 08146b33-90bd-4ff4-96d0-340690794460
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.510389 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.510769 [Dispatcher] Dispatched job 005ca0bb-7a4c-4461-bb43-7484b029905e to worker 0
+2025/12/31 16:04:24.510832 ✅ Job processed successfully! Name: send 55, ID: 005ca0bb-7a4c-4461-bb43-7484b029905e, Payload: payload-55
+2025/12/31 16:04:24.516564 [Dispatcher] Dispatched job ecdc32be-594e-4829-8e05-d56f96c270c9 to worker 1
+2025/12/31 16:04:24.517834 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: ecdc32be-594e-4829-8e05-d56f96c270c9
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.517907 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.522161 [Dispatcher] Dispatched job 204b994c-060c-49e0-826e-9818c25aa083 to worker 2
+2025/12/31 16:04:24.524576 ✅ Job processed successfully! Name: send 57, ID: 204b994c-060c-49e0-826e-9818c25aa083, Payload: payload-57
+2025/12/31 16:04:24.527903 [Dispatcher] Dispatched job 3af4412c-9545-4cb7-b025-05ab96060776 to worker 3
+2025/12/31 16:04:24.531313 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 3af4412c-9545-4cb7-b025-05ab96060776
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.531407 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.533700 [Dispatcher] Dispatched job 79a36071-6ccb-4aa0-a047-d67f0d4f70be to worker 4
+2025/12/31 16:04:24.538153 ✅ Job processed successfully! Name: send 59, ID: 79a36071-6ccb-4aa0-a047-d67f0d4f70be, Payload: payload-59
+2025/12/31 16:04:24.539470 [Dispatcher] Dispatched job 1b693c33-1945-4bfd-b388-01e68052f43d to worker 0
+2025/12/31 16:04:24.539592 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 1b693c33-1945-4bfd-b388-01e68052f43d
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.539632 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.544992 [Dispatcher] Dispatched job 6a1a3a0e-5edf-4e73-8006-2107f80748b9 to worker 1
+2025/12/31 16:04:24.546159 ✅ Job processed successfully! Name: send 61, ID: 6a1a3a0e-5edf-4e73-8006-2107f80748b9, Payload: payload-61
+2025/12/31 16:04:24.550557 [Dispatcher] Dispatched job 96b70a4b-efa4-40cb-948f-ae08de9f8070 to worker 2
+2025/12/31 16:04:24.552977 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 96b70a4b-efa4-40cb-948f-ae08de9f8070
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.553063 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.556287 [Dispatcher] Dispatched job 0c3d9c4a-dd7b-44c8-a111-8a13a88f80cd to worker 3
+2025/12/31 16:04:24.559617 ✅ Job processed successfully! Name: send 63, ID: 0c3d9c4a-dd7b-44c8-a111-8a13a88f80cd, Payload: payload-63
+2025/12/31 16:04:24.562002 [Dispatcher] Dispatched job c9bcb691-1f17-4409-a4ee-6eadf2b284ea to worker 4
+2025/12/31 16:04:24.566415 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: c9bcb691-1f17-4409-a4ee-6eadf2b284ea
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.566515 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.567624 [Dispatcher] Dispatched job f1e464af-5431-4fe8-beb9-73f6c80733fe to worker 0
+2025/12/31 16:04:24.567685 ✅ Job processed successfully! Name: send 65, ID: f1e464af-5431-4fe8-beb9-73f6c80733fe, Payload: payload-65
+2025/12/31 16:04:24.572962 [Dispatcher] Dispatched job b674ac96-632a-45e0-82c5-f0210c0a3353 to worker 1
+2025/12/31 16:04:24.574183 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: b674ac96-632a-45e0-82c5-f0210c0a3353
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.574307 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.578561 [Dispatcher] Dispatched job d80013fd-fb4c-4f83-ac82-df19c3f989da to worker 2
+2025/12/31 16:04:24.581014 ✅ Job processed successfully! Name: send 67, ID: d80013fd-fb4c-4f83-ac82-df19c3f989da, Payload: payload-67
+2025/12/31 16:04:24.584383 [Dispatcher] Dispatched job 5b50ce88-9f11-4faa-a303-8ec1e5a2fc61 to worker 3
+2025/12/31 16:04:24.587828 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 5b50ce88-9f11-4faa-a303-8ec1e5a2fc61
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.587927 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.590150 [Dispatcher] Dispatched job 73d8f0e6-f62b-4e8f-8958-3ee234057aa8 to worker 4
+2025/12/31 16:04:24.594573 ✅ Job processed successfully! Name: send 69, ID: 73d8f0e6-f62b-4e8f-8958-3ee234057aa8, Payload: payload-69
+2025/12/31 16:04:24.595920 [Dispatcher] Dispatched job d9824d63-7cb8-4262-bfc2-4a8f32099dfb to worker 0
+2025/12/31 16:04:24.595973 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: d9824d63-7cb8-4262-bfc2-4a8f32099dfb
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.596004 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.599429 📊 Metrics Snapshot → SuccessfulJobs: 35, FailedJobs: 36, TotalJobs: 71, ActiveWorkers: 0, JobRetryCount: 36, JobCount: 0
+2025/12/31 16:04:24.601711 [Dispatcher] Dispatched job 5c946b2d-8a3c-4d58-b8ba-975433873ddb to worker 1
+2025/12/31 16:04:24.602960 ✅ Job processed successfully! Name: send 71, ID: 5c946b2d-8a3c-4d58-b8ba-975433873ddb, Payload: payload-71
+2025/12/31 16:04:24.607340 [Dispatcher] Dispatched job 051fce5f-0c85-4d31-a74a-48d87aeb598d to worker 2
+2025/12/31 16:04:24.609736 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 051fce5f-0c85-4d31-a74a-48d87aeb598d
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.609888 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.613101 [Dispatcher] Dispatched job eb1f8d4c-d9a6-4fb8-9122-07ecee4983bf to worker 3
+2025/12/31 16:04:24.616767 ✅ Job processed successfully! Name: send 73, ID: eb1f8d4c-d9a6-4fb8-9122-07ecee4983bf, Payload: payload-73
+2025/12/31 16:04:24.619183 [Dispatcher] Dispatched job ded291f4-5846-43be-828c-cd8f56760e87 to worker 4
+2025/12/31 16:04:24.623526 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: ded291f4-5846-43be-828c-cd8f56760e87
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.623646 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.624711 [Dispatcher] Dispatched job f308b932-8f3f-4e06-aa08-a11757cfa1b2 to worker 0
+2025/12/31 16:04:24.624803 ✅ Job processed successfully! Name: send 75, ID: f308b932-8f3f-4e06-aa08-a11757cfa1b2, Payload: payload-75
+2025/12/31 16:04:24.630109 [Dispatcher] Dispatched job 724dea6a-5df9-400a-8003-bf9a2b33ea08 to worker 1
+2025/12/31 16:04:24.631386 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 724dea6a-5df9-400a-8003-bf9a2b33ea08
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.631444 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.635736 [Dispatcher] Dispatched job ec4fe877-f3fb-4673-b47c-277d71305cf5 to worker 2
+2025/12/31 16:04:24.638099 ✅ Job processed successfully! Name: send 77, ID: ec4fe877-f3fb-4673-b47c-277d71305cf5, Payload: payload-77
+2025/12/31 16:04:24.641382 [Dispatcher] Dispatched job 0c73fbe4-3f4e-4c48-9372-7e4ef30bcfa7 to worker 3
+2025/12/31 16:04:24.644766 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 0c73fbe4-3f4e-4c48-9372-7e4ef30bcfa7
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.644880 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.647164 [Dispatcher] Dispatched job dbe6c43b-6800-4fac-b717-fd289fec6492 to worker 4
+2025/12/31 16:04:24.651584 ✅ Job processed successfully! Name: send 79, ID: dbe6c43b-6800-4fac-b717-fd289fec6492, Payload: payload-79
+2025/12/31 16:04:24.652809 [Dispatcher] Dispatched job c8a85863-20c0-4cee-a8b5-c1d12cb468f5 to worker 0
+2025/12/31 16:04:24.652872 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: c8a85863-20c0-4cee-a8b5-c1d12cb468f5
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.652942 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.658256 [Dispatcher] Dispatched job b3f9e7d3-10e4-4747-bb39-a58583938121 to worker 1
+2025/12/31 16:04:24.659480 ✅ Job processed successfully! Name: send 81, ID: b3f9e7d3-10e4-4747-bb39-a58583938121, Payload: payload-81
+2025/12/31 16:04:24.663918 [Dispatcher] Dispatched job b02bc5a5-25bc-4cd0-8244-4aaf2855d610 to worker 2
+2025/12/31 16:04:24.666310 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: b02bc5a5-25bc-4cd0-8244-4aaf2855d610
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.666371 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.669712 [Dispatcher] Dispatched job 16beefb9-2644-4c87-a727-bc77c2cd48f8 to worker 3
+2025/12/31 16:04:24.673116 ✅ Job processed successfully! Name: send 83, ID: 16beefb9-2644-4c87-a727-bc77c2cd48f8, Payload: payload-83
+2025/12/31 16:04:24.675440 [Dispatcher] Dispatched job c3338199-932a-420d-878d-08bc97cb7deb to worker 4
+2025/12/31 16:04:24.679968 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: c3338199-932a-420d-878d-08bc97cb7deb
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.680056 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.681390 [Dispatcher] Dispatched job 3f69d5ec-9260-425c-8468-c4282f548e22 to worker 0
+2025/12/31 16:04:24.681446 ✅ Job processed successfully! Name: send 85, ID: 3f69d5ec-9260-425c-8468-c4282f548e22, Payload: payload-85
+2025/12/31 16:04:24.687006 [Dispatcher] Dispatched job 277d4644-b037-4e6a-b534-f3ce314e222d to worker 1
+2025/12/31 16:04:24.688318 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 277d4644-b037-4e6a-b534-f3ce314e222d
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.688395 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
+2025/12/31 16:04:24.692710 [Dispatcher] Dispatched job 2376733b-0255-40d0-bade-9ccb965036f8 to worker 2
+2025/12/31 16:04:24.695167 ✅ Job processed successfully! Name: send 87, ID: 2376733b-0255-40d0-bade-9ccb965036f8, Payload: payload-87
+2025/12/31 16:04:24.698508 [Dispatcher] Dispatched job 1f635d09-9e6d-43d1-95c6-152266f4ca2d to worker 3
+2025/12/31 16:04:24.699904 📊 Metrics Snapshot → SuccessfulJobs: 44, FailedJobs: 44, TotalJobs: 89, ActiveWorkers: 1, JobRetryCount: 44, JobCount: 1
+2025/12/31 16:04:24.699947 [Autoscaler] scaled down → 4 workers
+2025/12/31 16:04:24.702196 ❌ Failed to process job!
+📝 Name: no job name
+🆔 ID: 1f635d09-9e6d-43d1-95c6-152266f4ca2d
+📌 Status: Failed
+----------------
+2025/12/31 16:04:24.702314 ☠️ Job no job name moved to DLQ after 3 retries lmaooooooo
