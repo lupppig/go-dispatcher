@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 	"strings"
 	"sync/atomic"
@@ -115,15 +114,6 @@ func (m *Metrics) GetSnapshot() Metrics {
 
 func (m *Metrics) LogMetrics() {
 	snapshot := m.GetSnapshot()
-	fmt.Println(snapshot)
-	fmt.Printf("📊 Metrics Snapshot → SuccessfulJobs: %d, FailedJobs: %d, TotalJobs: %d, ActiveWorkers: %d, JobRetryCount: %d, JobCount: %d\n",
-		snapshot.SuccessfulJobs,
-		snapshot.FailedJobs,
-		snapshot.TotalJobs,
-		snapshot.ActiveWorkers,
-		snapshot.JobRetryCount,
-		snapshot.JobCount,
-	)
 	logger.Printf("📊 Metrics Snapshot → SuccessfulJobs: %d, FailedJobs: %d, TotalJobs: %d, ActiveWorkers: %d, JobRetryCount: %d, JobCount: %d\n",
 		snapshot.SuccessfulJobs,
 		snapshot.FailedJobs,

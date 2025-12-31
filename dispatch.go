@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -39,7 +38,6 @@ func NewDispatcher(maxWorkers int) *Dispatcher {
 		MaxWorkers:    maxWorkers,
 		IncomingJob:   make(chan *Job),
 		Workers:       make([]*Worker, 0),
-		MaxJob:        20,
 		mu:            new(sync.Mutex),
 		DLQ:           make([]*Job, 0),
 		WorkerMetrics: NewMetrics(),
@@ -63,7 +61,7 @@ func (d *Dispatcher) Run() {
 	go d.resultLoop()
 	go d.autoScaleLoop()
 
-	go d.StartMetricsLogger(100 * time.Millisecond)
+	go d.StartMetricsLogger(50 * time.Millisecond)
 
 }
 
@@ -75,29 +73,40 @@ func (d *Dispatcher) dispatchLoop() {
 				logger.Println("[Dispatcher] Incoming job channel closed")
 				return
 			}
-			if len(d.Workers) == 0 {
-				logger.Println("[Dispatcher] No workers available, retrying job later")
-				time.Sleep(50 * time.Millisecond)
-				d.IncomingJob <- job // requeue safely
-				continue
-			}
 
 			dispatched := false
-			for !dispatched {
-				worker := d.Workers[d.rrIndex]
-				d.rrIndex = (d.rrIndex + 1) % len(d.Workers)
+			attempts := 0
+			for !dispatched && attempts < len(d.Workers) {
+				worker := d.getNextWorker()
+				if worker == nil {
+					break
+				}
 
-				if atomic.LoadInt32(&worker.Busy) == 1 {
-					continue
+				if atomic.LoadInt32(&worker.Busy) == 0 {
+					select {
+					case worker.JobChannel <- job:
+						logger.Printf("[Dispatcher] Dispatched job %s to worker %d\n", job.ID, worker.ID)
+						atomic.AddInt32(&d.WorkerMetrics.JobCount, 1)
+						dispatched = true
+					default:
+						// worker channel full, try next
+					}
 				}
-				select {
-				case worker.JobChannel <- job:
-					logger.Printf("[Dispatcher] Dispatched job %s to worker %d\n",
-						job.ID, worker.ID)
-					dispatched = true
-				default:
-				}
-				time.Sleep(5 * time.Millisecond)
+
+				attempts++
+				time.Sleep(2 * time.Millisecond) // small backoff
+			}
+
+			if !dispatched {
+				// all workers busy, enqueue with delay in separate goroutine
+				go func(j *Job) {
+					time.Sleep(20 * time.Millisecond)
+					select {
+					case d.IncomingJob <- j:
+					default:
+						logger.Printf("[Dispatcher] Queue full, dropping job %s\n", j.ID)
+					}
+				}(job)
 			}
 
 		case <-d.stopChan:
@@ -108,6 +117,7 @@ func (d *Dispatcher) dispatchLoop() {
 			}
 			logger.Println("[Dispatcher] Graceful shutdown completed")
 			return
+
 		case <-d.quitChan:
 			logger.Println("[Dispatcher] Force shutdown initiated")
 			for _, w := range d.Workers {
@@ -128,6 +138,17 @@ func (d *Dispatcher) resultLoop() {
 			}
 		}(w)
 	}
+}
+
+func (d *Dispatcher) getNextWorker() *Worker {
+	d.mu.Lock()
+	defer d.mu.Unlock()
+	if len(d.Workers) == 0 {
+		return nil
+	}
+	w := d.Workers[d.rrIndex]
+	d.rrIndex = (d.rrIndex + 1) % len(d.Workers)
+	return w
 }
 
 func (d *Dispatcher) handleResult(res Result) {
@@ -240,12 +261,10 @@ func (d *Dispatcher) autoScaleLoop() {
 func (d *Dispatcher) StartMetricsLogger(interval time.Duration) {
 	go func() {
 		ticker := time.NewTicker(interval)
-		fmt.Println("ticking------------->")
 		defer ticker.Stop()
 		for {
 			select {
 			case <-ticker.C:
-				fmt.Println("--------------------->")
 				d.WorkerMetrics.LogMetrics()
 			case <-d.stopChan:
 				logger.Println("[MetricsLogger] Graceful shutdown")

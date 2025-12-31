@@ -9,11 +9,12 @@ import (
 var logger *log.Logger
 
 func main() {
-	dispatcher := NewDispatcher(5)
+	dispatcher := NewDispatcher(10)
 	dispatcher.Run()
 
+	fmt.Println("-------------------------> message dispatcher started <--------------------------")
 	logger = initLogger()
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 1000; i++ {
 		jobName := fmt.Sprintf("send %d", i)
 		if i%2 == 0 {
 			jobName = "no job name"
@@ -27,6 +28,7 @@ func main() {
 		dispatcher.IncomingJob <- job
 	}
 
-	time.Sleep(5 * time.Second)
-	dispatcher.Close() // graceful shutdown
+	time.Sleep(1 * time.Second)
+	dispatcher.Close()
+	fmt.Println("-----------------------------------> message dispatcher closed <-------------------------")
 }
