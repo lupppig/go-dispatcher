@@ -16,25 +16,29 @@ type Worker struct {
 	ID            int
 	JobChannel    chan *Job
 	StopChan      chan bool
+	ResultChan    chan Result
 	QuitChan      chan bool
 	Busy          int32
-	WorkerMetrics Metrics
+	WorkerMetrics *Metrics
 	wLock         *sync.Mutex
 	wg            *sync.WaitGroup
 }
 
-func NewWorker(id int, jcSize int) *Worker {
+func NewWorker(id int, jcSize int, metrics *Metrics) *Worker {
 	return &Worker{
-		ID:         id,
-		JobChannel: make(chan *Job, jcSize),
-		StopChan:   make(chan bool),
-		QuitChan:   make(chan bool),
-		wLock:      new(sync.Mutex),
-		wg:         new(sync.WaitGroup),
+		ID:            id,
+		JobChannel:    make(chan *Job, jcSize),
+		StopChan:      make(chan bool),
+		QuitChan:      make(chan bool),
+		wLock:         new(sync.Mutex),
+		ResultChan:    make(chan Result),
+		wg:            new(sync.WaitGroup),
+		WorkerMetrics: metrics,
 	}
 }
 
 func (w *Worker) StartWorker() {
+	defer close(w.ResultChan)
 	for {
 		select {
 		case job, ok := <-w.JobChannel:
@@ -42,20 +46,13 @@ func (w *Worker) StartWorker() {
 				fmt.Printf("[Worker %d] Job channel closed\n", w.ID)
 				return
 			}
-
 			atomic.StoreInt32(&w.Busy, 1)
 			fmt.Printf("[Worker %d] Processing job %s\n", w.ID, job.ID)
 
 			atomic.AddInt32(&w.WorkerMetrics.TotalJobs, 1)
-			status := SendNotification(*job, w.ID)
-			if status == JobFailure {
+			status, err := processJob(*job, w.ID)
 
-				//TODO: implment job retry logic...
-				atomic.AddInt32(&w.WorkerMetrics.JobRetryCount, 1)
-			} else {
-				atomic.AddInt32(&w.WorkerMetrics.SuccessfulJobs, 1)
-			}
-
+			w.ResultChan <- Result{Job: job, Status: status, Err: err}
 			atomic.StoreInt32(&w.Busy, 0)
 
 		case <-w.QuitChan:
